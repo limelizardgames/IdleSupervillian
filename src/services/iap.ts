@@ -1,9 +1,10 @@
 import { Capacitor } from '@capacitor/core';
 import { IAP_PRODUCTS, type IapProduct } from '../game/data';
+import { confirmModal } from '../ui/modals';
 
 /**
  * In-app purchase abstraction.
- * - Web / dev: MockIapProvider (confirm dialog, instant success) so the whole
+ * - Web / dev: MockIapProvider (in-game confirm dialog, instant success) so the whole
  *   purchase flow can be tested in a browser.
  * - Native: StoreKit / Google Play Billing via `cordova-plugin-purchase`
  *   (CdvPurchase global). Install it with:
@@ -25,7 +26,12 @@ class MockIapProvider implements IapProvider {
   price() { return null; }
   async purchase(productId: string) {
     const p = IAP_PRODUCTS.find((x) => x.id === productId);
-    return window.confirm(`[TEST STORE]\n\nBuy "${p?.name}" for ${p?.fallbackPrice}?\n\n(No real money is charged in the web build.)`);
+    return confirmModal(
+      'Test Store',
+      `<p>Buy <b>${p?.name}</b> for ${p?.fallbackPrice}?</p><p class="muted small">No real money is charged in the web build.</p>`,
+      'Buy (test)',
+      'Cancel',
+    );
   }
   async restore() {}
 }

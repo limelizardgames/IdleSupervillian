@@ -5,3 +5,4 @@ ios/App/Pods/
 *.log
 .DS_Store
 .env
+demo-build/

@@ -63,28 +63,8 @@ export function openSettings(app: App) {
         case 'stats': close(); openStats(app); break;
         case 'rename': close(); askName(app); break;
         case 'restore': app.restorePurchases(); break;
-        case 'export': {
-          const str = SaveManager.exportString(s);
-          try {
-            await navigator.clipboard.writeText(str);
-            toast('<span class="toast-icon">📋</span><div>Save copied to clipboard!</div>');
-          } catch {
-            window.prompt('Copy your save:', str);
-          }
-          break;
-        }
-        case 'import': {
-          const str = window.prompt('Paste your save string:');
-          if (!str) break;
-          try {
-            const loaded = SaveManager.importString(str);
-            await saves.save(loaded);
-            location.reload();
-          } catch {
-            toast('<span class="toast-icon">⚠️</span><div>That save string is invalid.</div>', 'toast-red');
-          }
-          break;
-        }
+        case 'export': close(); saveTextModal(app, 'export'); break;
+        case 'import': close(); saveTextModal(app, 'import'); break;
         case 'reset': {
           close();
           const ok = await confirmModal('Reset Everything?', '<p>This permanently deletes ALL progress, including Infamy and gems. Purchases can be restored.</p>', 'Delete it all', 'Keep playing');
@@ -94,6 +74,44 @@ export function openSettings(app: App) {
           }
           break;
         }
+      }
+    });
+    return w;
+  }, { cls: 'modal-wide' });
+}
+
+/** Shows the save string to copy, or a box to paste one in. */
+function saveTextModal(app: App, mode: 'export' | 'import') {
+  const str = mode === 'export' ? SaveManager.exportString(app.s) : '';
+  showModal((close) => {
+    const w = el('div');
+    w.innerHTML = `
+      <div class="modal-title">${mode === 'export' ? 'Export Save' : 'Import Save'}</div>
+      <p class="muted small center">${mode === 'export' ? 'Copy this text and keep it somewhere safe.' : 'Paste a save string. This replaces your current progress.'}</p>
+      <textarea id="save-text" class="save-text" ${mode === 'export' ? 'readonly' : ''}>${esc(str)}</textarea>
+      <div class="modal-buttons">
+        <button class="btn btn-ghost" data-a="close">Close</button>
+        <button class="btn btn-primary" data-a="go">${mode === 'export' ? 'Copy' : 'Load Save'}</button>
+      </div>`;
+    const ta = w.querySelector<HTMLTextAreaElement>('textarea')!;
+    w.addEventListener('click', async (e) => {
+      const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
+      if (a === 'close') close();
+      if (a !== 'go') return;
+      if (mode === 'export') {
+        try {
+          await navigator.clipboard.writeText(str);
+          toast('<span class="toast-icon">📋</span><div>Save copied!</div>');
+        } catch {
+          ta.select();
+        }
+        return;
+      }
+      try {
+        await saves.save(SaveManager.importString(ta.value));
+        location.reload();
+      } catch {
+        toast('<span class="toast-icon">⚠️</span><div>That save text is invalid. Check you copied all of it.</div>', 'toast-red');
       }
     });
     return w;
