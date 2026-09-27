@@ -1,0 +1,10 @@
+{
+  "name": "Idle Supervillain",
+  "short_name": "Supervillain",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#140a26",
+  "theme_color": "#140a26",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
