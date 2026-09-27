@@ -1,4 +1,5 @@
 import type { App } from '../app';
+import { UI_ICONS } from '../art/ui-icons';
 import { HENCHMAN_MINI, HERO_FLYING, VILLAIN_BODY } from '../art/characters';
 import { GEN_ICONS } from '../art/icons';
 import { sceneSVG } from '../art/scenes';
@@ -20,6 +21,7 @@ export class Scene {
   private actorKey = '';
   private tapCount = 0;
   private bubbleTimer = 0;
+  private laughTimer = 0;
   private hint: HTMLElement;
 
   constructor(private app: App, root: HTMLElement) {
@@ -34,9 +36,9 @@ export class Scene {
         <div class="chip chip-frenzy"><span>🔥 x7</span><b></b></div>
       </div>
       <div class="scene-side">
-        <button class="side-btn side-daily" aria-label="Daily reward"><span>📅</span><i class="dot"></i><small>Daily</small></button>
-        <button class="side-btn side-boost" aria-label="Watch ad for boost"><span>⚡</span><small>x2 Ad</small></button>
-        <button class="side-btn side-chest" aria-label="Free chest"><span>🎁</span><i class="dot"></i><small class="side-chest-t">Free</small></button>
+        <button class="side-btn side-daily" aria-label="Daily reward"><span class="side-icon">${UI_ICONS.daily}</span><i class="dot"></i><small>Daily</small></button>
+        <button class="side-btn side-boost" aria-label="Watch ad for boost"><span class="side-icon">${UI_ICONS.boost}</span><small>x2 Ad</small></button>
+        <button class="side-btn side-chest" aria-label="Free chest"><span class="side-icon">${UI_ICONS.gift}</span><i class="dot"></i><small class="side-chest-t">Free</small></button>
       </div>
       <div class="villain-wrap">
         <div class="speech"></div>
@@ -79,7 +81,15 @@ export class Scene {
     this.app.tap(x, y);
     this.villain.classList.remove('laugh');
     void this.villain.offsetWidth;
-    this.villain.classList.add('laugh');
+    this.villain.classList.add('laugh', 'laughing');
+    clearTimeout(this.laughTimer);
+    this.laughTimer = window.setTimeout(() => this.villain.classList.remove('laughing'), 550);
+    const ring = el('div', 'tap-ring');
+    const r = this.el.getBoundingClientRect();
+    ring.style.left = `${x - r.left}px`;
+    ring.style.top = `${y - r.top}px`;
+    this.el.appendChild(ring);
+    setTimeout(() => ring.remove(), 500);
     this.tapCount++;
     if (this.tapCount % 12 === 1) {
       this.bubble.textContent = LAUGHS[Math.floor(Math.random() * LAUGHS.length)];

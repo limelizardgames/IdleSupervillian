@@ -1,4 +1,5 @@
 import type { App } from '../../app';
+import { UI_ICONS } from '../../art/ui-icons';
 import { GEN_ICONS } from '../../art/icons';
 import { GENERATORS, type UpgradeDef } from '../../game/data';
 import * as E from '../../game/engine';
@@ -8,14 +9,14 @@ import type { View } from '../tabs';
 
 function upgradeIcon(u: UpgradeDef): string {
   if (u.effect.kind === 'gen') return GEN_ICONS[u.effect.target];
-  if (u.effect.kind === 'tap') return '<span class="emoji-icon">😈</span>';
-  return '<span class="emoji-icon">🌐</span>';
+  if (u.effect.kind === 'tap') return UI_ICONS.minions;
+  return UI_ICONS.boost;
 }
 
 export class UpgradesView implements View {
   id = 'upgrades';
   label = 'Upgrades';
-  icon = '⬆️';
+  icon = UI_ICONS.upgrades;
   el = el('div', 'view view-upgrades');
 
   constructor(private app: App) {

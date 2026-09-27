@@ -1,4 +1,5 @@
 import { effectLabel, type App } from '../../app';
+import { UI_ICONS } from '../../art/ui-icons';
 import { DEVICES, LAIRS } from '../../game/data';
 import * as E from '../../game/engine';
 import { fmtMoney, fmtTime } from '../../game/format';
@@ -8,7 +9,7 @@ import type { View } from '../tabs';
 export class DevicesView implements View {
   id = 'devices';
   label = 'Doomsday';
-  icon = '💣';
+  icon = UI_ICONS.doomsday;
   el = el('div', 'view view-devices');
 
   constructor(private app: App) {

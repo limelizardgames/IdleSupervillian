@@ -110,5 +110,68 @@ export const SVG_DEFS = `
     <filter id="f-blur" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="6"/>
     </filter>
+    <!-- Comic-book textures -->
+    <pattern id="p-halftone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+      <circle cx="3" cy="3" r="1.3" fill="#000"/>
+    </pattern>
+    <pattern id="p-halftone-light" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+      <circle cx="3.5" cy="3.5" r="1.2" fill="#fff"/>
+    </pattern>
+    <pattern id="p-bricks" width="40" height="20" patternUnits="userSpaceOnUse">
+      <rect width="40" height="20" fill="#00000000"/>
+      <path d="M0 0.5 H40 M0 10.5 H40 M10 0 V10 M30 10 V20" stroke="#000" stroke-opacity="0.25" stroke-width="1.2"/>
+    </pattern>
+    <pattern id="p-carpet" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 8 L4 0 L8 8" stroke="#000" stroke-opacity="0.18" fill="none"/>
+    </pattern>
+    <pattern id="p-grate" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M0 0 L10 10 M10 0 L0 10" stroke="#000" stroke-opacity="0.35" stroke-width="1.2"/>
+    </pattern>
+    <!-- Character palette -->
+    <linearGradient id="g-v-cape" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8a3dff"/><stop offset="0.55" stop-color="#5a1bc4"/><stop offset="1" stop-color="#2a0870"/>
+    </linearGradient>
+    <linearGradient id="g-v-lining" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff3d64"/><stop offset="1" stop-color="#8f0b2c"/>
+    </linearGradient>
+    <linearGradient id="g-v-suit" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4a4270"/><stop offset="0.5" stop-color="#2e2850"/><stop offset="1" stop-color="#1a1630"/>
+    </linearGradient>
+    <linearGradient id="g-v-boot" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4b3f78"/><stop offset="1" stop-color="#1f1838"/>
+    </linearGradient>
+    <linearGradient id="g-v-glove" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b57bff"/><stop offset="1" stop-color="#5a1bc4"/>
+    </linearGradient>
+    <linearGradient id="g-hair" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3b2d63"/><stop offset="1" stop-color="#140e26"/>
+    </linearGradient>
+    <linearGradient id="g-face" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffe7d4"/><stop offset="0.6" stop-color="#f6cfb0"/><stop offset="1" stop-color="#dfa987"/>
+    </linearGradient>
+    <linearGradient id="g-hench-shirt" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfd3e0"/>
+    </linearGradient>
+    <linearGradient id="g-mask" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3a3a52"/><stop offset="1" stop-color="#15151f"/>
+    </linearGradient>
+    <linearGradient id="g-hero-hair" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff08a"/><stop offset="1" stop-color="#f0a800"/>
+    </linearGradient>
+    <linearGradient id="g-mom-cardigan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff9cc8"/><stop offset="1" stop-color="#d9477f"/>
+    </linearGradient>
+    <linearGradient id="g-mom-hair" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b07a52"/><stop offset="1" stop-color="#6b4228"/>
+    </linearGradient>
+    <linearGradient id="g-labcoat" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#c9d2e3"/>
+    </linearGradient>
+    <radialGradient id="g-spot" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff6d8" stop-opacity="0.55"/><stop offset="0.6" stop-color="#fff6d8" stop-opacity="0.12"/><stop offset="1" stop-color="#fff6d8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="g-shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
   </defs>
 </svg>`;

@@ -1,4 +1,6 @@
 import type { App } from '../../app';
+import { sceneSVG } from '../../art/scenes';
+import { UI_ICONS } from '../../art/ui-icons';
 import { GEN_ICONS, LOCK_ICON } from '../../art/icons';
 import { GENERATORS, LAIRS, MILESTONES } from '../../game/data';
 import * as E from '../../game/engine';
@@ -13,7 +15,7 @@ const MODES: BuyMode[] = [1, 10, 100, 'max'];
 export class OperationsView implements View {
   id = 'ops';
   label = 'Minions';
-  icon = '🦹';
+  icon = UI_ICONS.minions;
   el = el('div', 'view view-ops');
 
   constructor(private app: App) {
@@ -98,7 +100,7 @@ export class OperationsView implements View {
       const idx = s.lair + 1;
       html += `
         <div class="card lair-card">
-          <div class="lair-thumb lair-thumb-${idx}"></div>
+          <div class="lair-thumb">${sceneSVG(idx)}</div>
           <div class="lair-info">
             <div class="lair-kicker">NEXT LAIR</div>
             <div class="lair-title">${esc(next.name)}</div>

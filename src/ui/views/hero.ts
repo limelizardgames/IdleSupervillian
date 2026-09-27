@@ -1,4 +1,5 @@
 import type { App } from '../../app';
+import { UI_ICONS } from '../../art/ui-icons';
 import { portrait } from '../../art/characters';
 import { GRUDGE_ICON, INFAMY_ICON } from '../../art/icons';
 import { PERKS, PRESTIGE_MIN_EARNED } from '../../game/data';
@@ -11,7 +12,7 @@ import type { View } from '../tabs';
 export class HeroView implements View {
   id = 'hero';
   label = 'Hero';
-  icon = '🦸';
+  icon = UI_ICONS.hero;
   el = el('div', 'view view-hero');
 
   constructor(private app: App) {

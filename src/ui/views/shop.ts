@@ -1,4 +1,5 @@
 import { GEM_ICON_INLINE, type App } from '../../app';
+import { UI_ICONS } from '../../art/ui-icons';
 import { CHEST_ICONS } from '../../art/icons';
 import { AD_GEMS_REWARD, CHESTS, GEM_ITEMS, IAP_PRODUCTS, type ChestType } from '../../game/data';
 import * as E from '../../game/engine';
@@ -12,7 +13,7 @@ const TYPES: ChestType[] = ['common', 'rare', 'epic'];
 export class ShopView implements View {
   id = 'shop';
   label = 'Shop';
-  icon = '💎';
+  icon = UI_ICONS.shop;
   el = el('div', 'view view-shop');
 
   constructor(private app: App) {
